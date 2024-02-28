@@ -10,12 +10,13 @@ class Task extends Model
     use HasFactory;
 
     protected $fillable = [
-        "title"
+        "title",
+        "is_done"
     ];
 
     //this will change is_done num value (0 or 1) to be false/true in json
     protected $casts = [
-        'is_done' => "boolean"
+        "is_done" => "boolean"
     ];
 
     protected $hidden = [
