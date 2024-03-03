@@ -17,6 +17,8 @@ class TaskController extends Controller
         //this will can access in url like this localhost/api/tasks?filter[is_done]=1
         $tasks = QueryBuilder::for(Task::class)
             ->allowedFilters('is_done')
+            ->defaultSort('-created_at') //this will from latest added in the top list
+            ->allowedSorts(['title', 'is_done', 'created_at']) //localhost/api/task?sort=is_done,title,created_at
             ->paginate();
 
         return new TaskCollection($tasks);
