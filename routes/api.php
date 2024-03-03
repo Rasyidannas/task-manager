@@ -22,4 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('tasks', TaskController::class);
+//this for protecting tasks and only logined user can see tasks
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('tasks', TaskController::class);
+});
