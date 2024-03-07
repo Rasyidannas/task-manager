@@ -35,7 +35,7 @@ class Task extends Model
 
     protected static function booted(): void
     {
-        //this will only show user logged tasks or not other user tasks
+        //this will only CRUD user logged tasks or not other user tasks
         static::addGlobalScope('creator', function (Builder $builder) {
             $builder->where('creator_id', Auth::id());
         });

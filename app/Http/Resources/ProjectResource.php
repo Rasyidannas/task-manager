@@ -17,7 +17,7 @@ class ProjectResource extends JsonResource
         return [
             "id" => $this->id,
             "title" => $this->title,
-            "tasks" => TaskResource::collection($this->tasks), //this will show the tasks relationship
+            "tasks" => TaskResource::collection($this->whenLoaded('tasks')), //this will show the tasks relationship
             "created_at" => $this->created_at,
             "updated_at" => $this->updated_at,
         ];
