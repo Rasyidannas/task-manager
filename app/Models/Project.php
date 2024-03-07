@@ -29,7 +29,7 @@ class Project extends Model
 
     protected static function booted(): void
     {
-        //this will only show user logined tasks or not other user tasks
+        //this will only show user logged project or not other user tasks
         static::addGlobalScope('creator', function (Builder $builder) {
             $builder->where('creator_id', Auth::id());
         });
