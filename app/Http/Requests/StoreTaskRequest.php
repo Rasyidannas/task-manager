@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class StoreTaskRequest extends FormRequest
 {
@@ -22,7 +24,14 @@ class StoreTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|max:255'
+            'title' => 'required|max:255',
+            "project_id" => [
+                "nullable",
+                // this is for check creator_id for task and project have to same
+                Rule::exists('projects', 'id')->where(function ($query) {
+                    $query->where("creator_id", Auth::id());
+                })
+            ]
         ];
     }
 }

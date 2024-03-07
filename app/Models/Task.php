@@ -14,7 +14,8 @@ class Task extends Model
 
     protected $fillable = [
         "title",
-        "is_done"
+        "is_done",
+        "project_id"
     ];
 
     //this will change is_done num value (0 or 1) to be false/true in json
