@@ -27,6 +27,11 @@ class Task extends Model
         return $this->belongsTo(User::class, 'creator_id');
     }
 
+    public function project(): BelongsTo
+    {
+        return $this->belongsTo(Project::class); //this not use second arguments because with default name
+    }
+
     protected static function booted(): void
     {
         //this will only show user logined tasks or not other user tasks
