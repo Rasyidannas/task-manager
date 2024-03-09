@@ -33,7 +33,9 @@ class ProjectController extends Controller
 
     public function show(Request $request, Project $project)
     {
-        return (new ProjectResource($project))->load('tasks'); //this will show tasks in show route
+        return (new ProjectResource($project))
+            ->load('tasks')
+            ->load('members'); //this will show tasks and members auto json
     }
 
     public function update(UpdateProjectRequest $request, Project $project)
