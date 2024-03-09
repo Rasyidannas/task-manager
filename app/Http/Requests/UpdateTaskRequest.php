@@ -29,10 +29,8 @@ class UpdateTaskRequest extends FormRequest
             "is_done" => "sometimes|boolean",
             "project_id" => [
                 "nullable",
-                // this is for check creator_id for task and project have to same
-                Rule::exists('projects', 'id')->where(function ($query) {
-                    $query->where("creator_id", Auth::id());
-                })
+                // this is for user is member of project
+                Rule::in(Auth::user()->memberships->pluck('id'))
             ]
         ];
     }
