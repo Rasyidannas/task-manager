@@ -13,7 +13,7 @@ class ProjectPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,17 +21,8 @@ class ProjectPolicy
      */
     public function view(User $user, Project $project): bool
     {
-        //this is for creator
-        if ($user->id === $project->creator_id) {
-            return true;
-        }
-
-        //this is for membership
-        if ($user->memberships->contains($project)) {
-            return true;
-        }
-
-        return false;
+        //this is for creator and members
+        return $user->memberships->contains($project);
     }
 
     /**
