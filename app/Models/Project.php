@@ -33,11 +33,11 @@ class Project extends Model
         return $this->belongsToMany(User::class, Member::class);
     }
 
-    protected static function booted(): void
-    {
-        //this will only can CRUD user logged project or not other user tasks
-        static::addGlobalScope('creator', function (Builder $builder) {
-            $builder->where('creator_id', Auth::id());
-        });
-    }
+    // protected static function booted(): void
+    // {
+    //     //this will only can CRUD user logged project or not other user tasks
+    //     static::addGlobalScope('creator', function (Builder $builder) {
+    //         $builder->where('creator_id', Auth::id());
+    //     });
+    // }
 }
