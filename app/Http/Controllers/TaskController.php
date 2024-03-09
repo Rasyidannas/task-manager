@@ -13,6 +13,11 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class TaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Task::class, "task");
+    }
+
     public function index(Request $request)
     {
         //this will can access in url like this localhost/api/tasks?filter[is_done]=1
